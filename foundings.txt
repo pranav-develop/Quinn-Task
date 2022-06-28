@@ -1,0 +1,5 @@
+console.log("client offset: ", monitor.getClientOffset()); // gives mouse pointer when left
+console.log("diffreent inital offset: ", monitor.getDifferenceFromInitialOffset());
+console.log("diffrenece monitor offset:", monitor.getInitialClientOffset()); // where mouse was started
+console.log("source client offset:", monitor.getSourceClientOffset()); // element starting positon on canvas topleft position
+console.log(monitor);
