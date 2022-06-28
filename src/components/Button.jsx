@@ -1,9 +1,18 @@
 //jshint esversion: 9
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useDrag } from "react-dnd/dist/hooks";
 import DragTypes from "../utils/DragTypes";
 
 function Button({ label, position, inDragCanvas, id }) {
+    const [nameLabel, setNameLabel] = useState(label ? label : "Button");
+
+    const [activateInput, setActivateInput] = useState(false);
+    const input = useRef(null);
+
+    const handleChange = (event) => {
+        const { value } = event.target;
+        setNameLabel(value);
+    };
 
     const [{ isDragging }, buttonDrag] = useDrag({
         type: DragTypes.BUTTON,
@@ -35,9 +44,28 @@ function Button({ label, position, inDragCanvas, id }) {
                       }
             }
             ref={buttonDrag}
-            onDoubleClick
+            onDoubleClick={() => {
+                if (inDragCanvas) {
+                    setActivateInput(true);
+                    if (input.current) input.current.focus();
+                }
+            }}
         >
-            <button className="btn btn-dark my-2 py-3 px-4">{label ? label : "Button"}</button>
+            <button className="btn btn-dark my-2  ">
+                <input
+                    ref={input}
+                    disabled={activateInput ? false : true}
+                    className="color-white text-center bg-transparent border-0"
+                    type={"text"}
+                    value={nameLabel}
+                    onBlur={() => {
+                        setActivateInput(false);
+                    }}
+                    onChange={handleChange}
+                />
+
+                {/* {!activateInput && (label ? label : "Button")} */}
+            </button>
         </div>
     );
 }

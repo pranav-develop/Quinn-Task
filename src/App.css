@@ -3,10 +3,18 @@
     min-width: 200px;
     min-height: 200px;
     overflow: auto;
-    height: 200px;
+    height: 500px;
     position: relative;
 }
 
 .resizeable-canvas > * {
     position: absolute;
+}
+
+.color-white {
+    color: #fff !important;
+}
+
+.input:focus {
+    border: 0;
 }

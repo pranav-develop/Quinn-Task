@@ -1,6 +1,6 @@
 //jshint esversion: 9
 
-export const normalizePosition = (position = { x: 0, y: 0 }, elementLengthX, elementLengthY) => {
+export const normalizePosition = (position, elementLengthX, elementLengthY) => {
     return {
         x: position.x / elementLengthX,
         y: position.y / elementLengthY,
