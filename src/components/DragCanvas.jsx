@@ -9,7 +9,7 @@ import { nanoid } from "nanoid";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewElementAction, updateElementAction } from "../redux/Elements/ElementActions";
 
-function DragCanvas() {
+function DragCanvas({ setControlPanelData }) {
     // const [elements, setElements] = useState([]);
 
     const elements = useSelector((store) => store.element);
@@ -19,7 +19,7 @@ function DragCanvas() {
     const outerRef = useRef();
 
     const [{ isOver }, drop] = useDrop({
-        accept: DragTypes.BUTTON,
+        accept: [DragTypes.BUTTON, DragTypes.TEXT],
         drop: (item, monitor) => {
             if (item.prevData && item.prevData.inDragCanvas) {
                 dispatch(
@@ -46,6 +46,7 @@ function DragCanvas() {
                     outerRef.current.offsetLeft,
                     outerRef.current.offsetTop
                 );
+                newElement.styles = item.styles;
                 dispatch(addNewElementAction(newElement));
                 // setElements((prevState) => {
                 //     return [...prevState, newElement];
@@ -65,20 +66,30 @@ function DragCanvas() {
                     <>
                         <Button
                             key={element.id}
-                            label={element.values.label}
+                            values={element.values}
                             position={element.position}
                             inDragCanvas={true}
                             id={element.id}
+                            styles={element.styles}
+                            setControlPanelData={setControlPanelData}
                         />
                     </>
                 );
-            } else if (element.name === "input") {
+            } else if (element.name === "text") {
                 return (
                     <>
-                        <Input key={index} />
+                        <Input
+                            key={element.id}
+                            values={element.values}
+                            position={element.position}
+                            inDragCanvas={true}
+                            id={element.id}
+                            styles={element.styles}
+                            setControlPanelData={setControlPanelData}
+                        />
                     </>
                 );
-            }
+            } else return <></>;
         });
     };
 

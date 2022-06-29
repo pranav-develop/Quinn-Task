@@ -1,7 +1,7 @@
 //jshint esversion: 9
 const DragTypes = {
     BUTTON: "button",
-    INPUT: "input",
+    TEXT: "text",
 };
 
 export default DragTypes;

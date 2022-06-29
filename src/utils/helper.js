@@ -14,4 +14,14 @@ export const getRelativeCoordinate = (elementOffset, targetOffsetX, targetOffset
     };
 };
 
+export const loadData = () => {
+    const data = localStorage.getItem("dragData");
+    if (data) return JSON.parse(data);
+    else return [];
+};
+
+export const saveData = (data) => {
+    localStorage.setItem("dragData", JSON.stringify(data));
+};
+
 // export const
