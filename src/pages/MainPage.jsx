@@ -16,10 +16,15 @@ function MainPage() {
         isOpen: false,
     });
 
-    const [doReload, setDoReload] = useState(false);
+    const [reload, setReload] = useState(false);
+
+    const setDoReload = () => {
+        setReload(!reload);
+    };
 
     const clearCanvas = () => {
         dispatch(removeAllElements());
+        setControlPanelData({ isOpen: false, elementId: "" });
     };
 
     return (
@@ -46,9 +51,9 @@ function MainPage() {
                     <div className="col-3">
                         {controlPanelData.isOpen && (
                             <SideControlPanel
-                                doReload={doReload}
                                 setDoReload={setDoReload}
                                 elementId={controlPanelData.elementId}
+                                setControlPanelData={setControlPanelData}
                             />
                         )}
                     </div>

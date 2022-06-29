@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeElementAction, updateElementAction } from "../redux/Elements/ElementActions";
 
-function SideControlPanel({ doReload, setDoReload, elementId }) {
+function SideControlPanel({ setDoReload, elementId, setControlPanelData }) {
     const dispatch = useDispatch();
 
     const elements = useSelector((store) => store.element);
@@ -64,7 +64,7 @@ function SideControlPanel({ doReload, setDoReload, elementId }) {
             return;
         }
         dispatch(updateElementAction(elementId, { styles: elementStyle }));
-        setDoReload(!doReload);
+        setDoReload();
     };
 
     return (
@@ -143,7 +143,13 @@ function SideControlPanel({ doReload, setDoReload, elementId }) {
                             </div>
                         </div>
                         <div className="d-flex justify-content-center py-4">
-                            <button onClick={() => dispatch(removeElementAction(elementId))} className="btn btn-outline-danger">
+                            <button
+                                onClick={() => {
+                                    dispatch(removeElementAction(elementId));
+                                    setControlPanelData({ isOpen: false, elementId: "" });
+                                }}
+                                className="btn btn-outline-danger"
+                            >
                                 Remove
                             </button>
                         </div>
