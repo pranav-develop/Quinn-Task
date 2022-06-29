@@ -66,10 +66,10 @@ function Button({ values, position, styles, inDragCanvas, id, setControlPanelDat
             }}
             className="position-absolute"
         >
-            <button className="btn btn-dark my-2" style={styles}>
+            <button className="btn btn-dark p-0" style={{ height: "40px", ...styles }}>
                 <input
                     ref={input}
-                    style={{ color: "inherit" }}
+                    style={{ color: "inherit", width: "inherit" }}
                     disabled={activateInput ? false : true}
                     className="text-center bg-transparent border-0"
                     type={"text"}

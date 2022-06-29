@@ -1,5 +1,8 @@
 //jshint esversion: 9
 
+import Button from "../components/Button";
+import Input from "../components/Input";
+
 export const normalizePosition = (position, elementLengthX, elementLengthY) => {
     return {
         x: position.x / elementLengthX,
@@ -23,5 +26,6 @@ export const loadData = () => {
 export const saveData = (data) => {
     localStorage.setItem("dragData", JSON.stringify(data));
 };
+
 
 // export const

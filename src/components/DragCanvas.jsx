@@ -1,5 +1,5 @@
 //jshint esversion: 9
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useDrop } from "react-dnd";
 import DragTypes from "../utils/DragTypes";
 import { getRelativeCoordinate } from "../utils/helper";
@@ -10,8 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { addNewElementAction, updateElementAction } from "../redux/Elements/ElementActions";
 
 function DragCanvas({ setControlPanelData }) {
-    // const [elements, setElements] = useState([]);
-
     const elements = useSelector((store) => store.element);
 
     const dispatch = useDispatch();
